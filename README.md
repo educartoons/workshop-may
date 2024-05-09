@@ -6,7 +6,7 @@ npm create vite@latest
 
 ## Add TailwindCSS
 
-``
+```
 pnpm add -D tailwindcss autoprefixer postcsss
 
 ```
@@ -17,7 +17,7 @@ we need to configure tailwindcss
 
 npx tailwindcss init
 
-````
+```
 
 Then in the tailwind.config.js we need to add the next line
 
@@ -29,8 +29,8 @@ export default {
     extend: {},
   },
   plugins: [],
-}
-````
+};
+```
 
 Then we need to create a postcss.config.js file in the root of our project
 
