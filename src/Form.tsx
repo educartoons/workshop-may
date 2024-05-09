@@ -30,6 +30,8 @@ export default function Form() {
     };
   }, []);
 
+  console.log("Rendering");
+
   return (
     <form className="flex flex-col gap-2">
       <Input
