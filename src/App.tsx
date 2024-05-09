@@ -1,13 +1,18 @@
-import { useState } from "react";
-import Form from "./Form";
-import Button from "./Button";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import NotFound from "./pages/NotFound";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
-  const [showForm, setShowForm] = useState(false);
   return (
     <div className="min-h-screen flex items-center justify-center flex-col gap-3">
-      <Button onClick={() => setShowForm(!showForm)}>Toggle Form</Button>
-      {showForm ? <Form /> : null}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

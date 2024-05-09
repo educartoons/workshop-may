@@ -1,6 +1,6 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import Input from "./Input";
-import Button from "./Button";
+import Button from "./components/Button";
 
 export default function Form() {
   const [form, setForm] = useState({

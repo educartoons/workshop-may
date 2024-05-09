@@ -4,19 +4,22 @@
 npm create vite@latest
 ```
 
+now we need to install the dependencies
+
+```
+pnpm i
+```
+
 ## Add TailwindCSS
 
 ```
 pnpm add -D tailwindcss autoprefixer postcsss
-
 ```
 
 we need to configure tailwindcss
 
 ```
-
 npx tailwindcss init
-
 ```
 
 Then in the tailwind.config.js we need to add the next line
