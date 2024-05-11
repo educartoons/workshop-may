@@ -1,13 +1,16 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Input from "./Input";
-import Button from "./components/Button";
+import Button from "./Button";
+import { useKanban } from "../context/kanban-context";
 
 export default function Form() {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    severity: "",
+    priority: "",
   });
+
+  const { handleAddTask } = useKanban();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -16,21 +19,14 @@ export default function Form() {
     });
   };
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLFormElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      console.log("Event");
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("keypress", handleKeyPress);
-    return () => {
-      window.removeEventListener("keypress", handleKeyPress);
+  const handleClick = (event) => {
+    event.preventDefault();
+    const newTask = {
+      id: crypto.randomUUID() as string,
+      ...form,
     };
-  }, []);
-
-  console.log("Rendering");
+    handleAddTask(newTask);
+  };
 
   return (
     <form className="flex flex-col gap-2">
@@ -50,13 +46,13 @@ export default function Form() {
       />
 
       <Input
-        value={form.severity}
-        name="severity"
+        value={form.priority}
+        name="priority"
         onChange={handleChange}
         type="text"
-        placeholder="Severity"
+        placeholder="Priority"
       />
-      <Button>Add</Button>
+      <Button onClick={handleClick}>Add</Button>
     </form>
   );
 }

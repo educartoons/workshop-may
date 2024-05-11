@@ -1,3 +1,4 @@
+import { TaskStatus } from "../context/kanban-context";
 import Task from "./Task";
 import type { Task as TaskType } from "./Task";
 
@@ -7,6 +8,9 @@ type TaskListProps = {
   title: string;
   tasks: TaskType[];
   type: Lists;
+  prev: TaskStatus;
+  origin: TaskStatus;
+  next: TaskStatus;
 };
 
 const variants = {
@@ -21,7 +25,14 @@ const variantsHeadings = {
   done: "bg-green-200",
 };
 
-export default function TaskList({ tasks, title, type }: TaskListProps) {
+export default function TaskList({
+  tasks,
+  title,
+  type,
+  prev,
+  origin,
+  next,
+}: TaskListProps) {
   return (
     <div
       className={`flex flex-col gap-4 px-4 py-8 rounded-xl ${variants[type]}`}
@@ -40,7 +51,13 @@ export default function TaskList({ tasks, title, type }: TaskListProps) {
       </div>
       <div className="flex flex-col gap-2">
         {tasks.map((task, index) => (
-          <Task key={index} task={task} />
+          <Task
+            key={index}
+            task={task}
+            origin={origin}
+            prev={prev}
+            next={next}
+          />
         ))}
       </div>
     </div>
