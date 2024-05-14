@@ -12,7 +12,6 @@ type TaskListProps = {
   prev: TaskStatus;
   origin: TaskStatus;
   next: TaskStatus;
-  handleChangeFilter?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const variants = {

@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import {
   XMarkIcon,
   ArrowRightIcon,
@@ -5,7 +6,8 @@ import {
 } from "@heroicons/react/24/outline";
 import Button from "./Button";
 import PriorityTag, { Priorities } from "./PriorityTag";
-import { TaskStatus, useKanban } from "../context/kanban-context";
+import { TaskStatus } from "../context/kanban-context";
+import { moveTask } from "../store/kanbanSlice";
 
 export type Task = {
   id: string;
@@ -22,17 +24,27 @@ type TaskProps = {
 };
 
 export default function Task({ task, prev, origin, next }: TaskProps) {
-  const { moveTask } = useKanban();
+  const dispatch = useDispatch();
 
   const handleMoveRight = () => {
-    moveTask(task, origin, next);
+    dispatch(
+      moveTask({
+        task: task,
+        origin: origin,
+        target: next,
+      })
+    );
   };
 
   const handleMoveLeft = () => {
-    moveTask(task, origin, prev);
+    dispatch(
+      moveTask({
+        task: task,
+        origin: origin,
+        target: prev,
+      })
+    );
   };
-
-  console.count("Rendering Task");
 
   return (
     <div className="bg-white border border-zinc-100 rounded pl-4 pr-2 py-3 shadow-md">

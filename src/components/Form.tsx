@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import Input from "./Input";
 import Button from "./Button";
-import { useKanban } from "../context/kanban-context";
+import { addTask } from "../store/kanbanSlice";
 
 export default function Form() {
   const [form, setForm] = useState({
@@ -10,7 +11,7 @@ export default function Form() {
     priority: "",
   });
 
-  const { handleAddTask } = useKanban();
+  const dispatch = useDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -25,7 +26,7 @@ export default function Form() {
       id: crypto.randomUUID() as string,
       ...form,
     };
-    handleAddTask(newTask);
+    dispatch(addTask({ task: newTask }));
   };
 
   return (
