@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 type Task = {
   id: string;
@@ -36,7 +37,7 @@ const initialState: Tasks = {
 export type TaskStatus = keyof typeof initialState;
 
 function KanbanContextProvider({ children }: KanbanContextProviderProps) {
-  const [tasks, setTasks] = useState<Tasks>(initialState);
+  const [tasks, setTasks] = useLocalStorage<Tasks>("kanban", initialState);
 
   const handleAddTask = (task: Task) => {
     setTasks({

@@ -1,3 +1,4 @@
+import { ChangeEvent, memo } from "react";
 import { TaskStatus } from "../context/kanban-context";
 import Task from "./Task";
 import type { Task as TaskType } from "./Task";
@@ -11,6 +12,7 @@ type TaskListProps = {
   prev: TaskStatus;
   origin: TaskStatus;
   next: TaskStatus;
+  handleChangeFilter?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const variants = {
@@ -25,14 +27,15 @@ const variantsHeadings = {
   done: "bg-green-200",
 };
 
-export default function TaskList({
+const TaskList = ({
   tasks,
   title,
   type,
   prev,
   origin,
   next,
-}: TaskListProps) {
+}: TaskListProps) => {
+  console.count("rendering TaskList");
   return (
     <div
       className={`flex flex-col gap-4 px-4 py-8 rounded-xl ${variants[type]}`}
@@ -62,4 +65,6 @@ export default function TaskList({
       </div>
     </div>
   );
-}
+};
+
+export default memo(TaskList);

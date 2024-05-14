@@ -32,6 +32,8 @@ export default function Task({ task, prev, origin, next }: TaskProps) {
     moveTask(task, origin, prev);
   };
 
+  console.count("Rendering Task");
+
   return (
     <div className="bg-white border border-zinc-100 rounded pl-4 pr-2 py-3 shadow-md">
       <div className="flex justify-between">
