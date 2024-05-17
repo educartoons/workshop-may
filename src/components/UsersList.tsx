@@ -12,7 +12,7 @@ export default function UsersList() {
     <div>
       <h2>Users List</h2>
       {!isLoading
-        ? data.results.map((user) => <li key={user.id}>{user.name}</li>)
+        ? data.results.map((user: any) => <li key={user.id}>{user.name}</li>)
         : null}
     </div>
   );
