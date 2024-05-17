@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
+import { useFetchUsers } from "../hooks/useFetchUsers";
+
+// Single Reponsibility
 
 export default function UsersList() {
-  const [users, setUsers] = useState([]);
-
-  const handleFetch = async () => {
-    const response = await fetch("https://rickandmortyapi.com/api/character");
-    const result = await response.json();
-    setUsers(result.results);
-  };
-
-  useEffect(() => {
-    handleFetch();
-  }, []);
+  const [users] = useFetchUsers();
 
   return (
     <div>
