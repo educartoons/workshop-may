@@ -1,4 +1,4 @@
-import { ChangeEvent, memo } from "react";
+import { memo } from "react";
 import { TaskStatus } from "../context/kanban-context";
 import Task from "./Task";
 import type { Task as TaskType } from "./Task";
@@ -34,7 +34,6 @@ const TaskList = ({
   origin,
   next,
 }: TaskListProps) => {
-  console.count("rendering TaskList");
   return (
     <div
       className={`flex flex-col gap-4 px-4 py-8 rounded-xl ${variants[type]}`}

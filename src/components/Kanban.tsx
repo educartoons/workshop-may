@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import TaskList from "./TaskList";
 import { RootState } from "../store/store";
-import Form from "./Form";
 
 export default function Kanban() {
   const kanban = useSelector((state: RootState) => state.kanban);
@@ -11,7 +10,7 @@ export default function Kanban() {
       <div className="bg-stone-100 py-5 px-5 rounded-xl mb-4">
         <h1 className="text-lg font-medium">🤟 Let's kick off the day</h1>
       </div>
-      <div className="flex flex-row gap-4">
+      <div className="grid grid-cols-3 gap-2">
         <TaskList
           origin="todo"
           prev="todo"
@@ -36,10 +35,6 @@ export default function Kanban() {
           title="Done"
           tasks={kanban.done}
         />
-      </div>
-
-      <div>
-        <Form />
       </div>
     </div>
   );
