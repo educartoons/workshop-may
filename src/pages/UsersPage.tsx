@@ -1,9 +1,10 @@
 import Layout from "../components/Layout";
+import UsersList from "../components/UsersList";
 
 export default function UsersPage() {
   return (
     <Layout>
-      <h2>Users Page 👤</h2>
+      <UsersList />
     </Layout>
   );
 }
