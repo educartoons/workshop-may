@@ -1,20 +1,19 @@
-import { useFetchUsers } from "../hooks/useFetchUsers";
+import { useQuery } from "react-query";
+import { fetchUsers } from "../api/queries";
 
 // Single Reponsibility
 
 export default function UsersList() {
-  const [users, loading, error] = useFetchUsers();
+  const { data, isLoading } = useQuery("fetchUsers", fetchUsers);
+
+  console.log(data);
 
   return (
     <div>
       <h2>Users List</h2>
-      {loading ? <h3>Loading...</h3> : null}
-      {error !== "" ? <p>{error}</p> : null}
-      <ul>
-        {users.map((user) => (
-          <li>{user.name}</li>
-        ))}
-      </ul>
+      {!isLoading
+        ? data.results.map((user) => <li key={user.id}>{user.name}</li>)
+        : null}
     </div>
   );
 }
