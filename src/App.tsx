@@ -11,6 +11,7 @@ const KanbanPage = lazy(() => import("./pages/KanbanPage"));
 const AddTaskPage = lazy(() => import("./pages/AddTaskPage"));
 const UsersPage = lazy(() => import("./pages/UsersPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,7 @@ export default function App() {
                   <Route path="/add-task" element={<AddTaskPage />} />
                   <Route path="/users" element={<UsersPage />} />
                   <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

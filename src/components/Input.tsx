@@ -4,10 +4,14 @@ type InputProps = {
   variant?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export default function Input({ ...rest }: InputProps) {
+export default function Input({ placeholder, ...rest }: InputProps) {
   return (
     <label className="block" htmlFor="">
-      <input className="border border-zinc-300 rounded px-2 py-2" {...rest} />
+      <span className="text-sm font-normal block mb-2">{placeholder}:</span>
+      <input
+        className="border border-zinc-300 rounded px-2 py-2 w-full"
+        {...rest}
+      />
     </label>
   );
 }

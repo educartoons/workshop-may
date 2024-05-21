@@ -11,7 +11,7 @@ const button = cva("", {
     },
     width: {
       regular: "",
-      full: "",
+      full: "w-full",
     },
   },
   defaultVariants: {
