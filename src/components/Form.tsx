@@ -3,6 +3,7 @@ import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
 import Input from "./Input";
 import Button from "./Button";
+import { getUsers } from "../db/index";
 import { addTask } from "../store/kanbanSlice";
 
 type FormProps = {
@@ -15,6 +16,8 @@ export default function Form({ handleChangeKey }: FormProps) {
     description: "",
     priority: "",
   });
+
+  getUsers();
 
   const { enqueueSnackbar } = useSnackbar();
 
