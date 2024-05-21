@@ -1,8 +1,11 @@
-import { ChangeEvent, useState, MouseEvent } from "react";
+import { ChangeEvent, useState, MouseEvent, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Input from "./Input";
 import Button from "./Button";
 import { login } from "../api/auth";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const initialState = {
   email: "",
@@ -13,6 +16,8 @@ export type UserLoginForm = typeof initialState;
 
 export default function LoginForm() {
   const [form, setForm] = useState(initialState);
+  const user = useSelector((state: RootState) => state.user);
+  const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -23,9 +28,15 @@ export default function LoginForm() {
 
   const handleLogin = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const user = await login(form);
-    console.log(user);
+    await login(form);
+    navigate("/");
   };
+
+  useEffect(() => {
+    if (user.email) {
+      navigate("/");
+    }
+  }, [user.email]);
 
   return (
     <div className="w-[500px]">

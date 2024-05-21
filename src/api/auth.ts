@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { UserRegisterForm } from "../components/RegisterForm";
@@ -28,12 +29,11 @@ async function registerUser(form: UserRegisterForm) {
 }
 
 async function login(form: UserLoginForm) {
-  const { user } = await signInWithEmailAndPassword(
-    firebaseAuth,
-    form.email,
-    form.password
-  );
-  return user;
+  await signInWithEmailAndPassword(firebaseAuth, form.email, form.password);
 }
 
-export { registerUser, login };
+function logout() {
+  signOut(firebaseAuth);
+}
+
+export { registerUser, login, logout };
