@@ -16,7 +16,6 @@ export type UserLoginForm = typeof initialState;
 
 export default function LoginForm() {
   const [form, setForm] = useState(initialState);
-  const user = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,12 +30,6 @@ export default function LoginForm() {
     await login(form);
     navigate("/");
   };
-
-  useEffect(() => {
-    if (user.email) {
-      navigate("/");
-    }
-  }, [user.email]);
 
   return (
     <div className="w-[500px]">

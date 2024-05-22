@@ -6,6 +6,7 @@ import { SnackbarProvider } from "notistack";
 import { store } from "./store/store";
 import AuthListener from "./components/AuthListener";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AnonRoute from "./components/AnonRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -41,8 +42,11 @@ export default function App() {
                       <Route path="/add-task" element={<AddTaskPage />} />
                       <Route path="/users" element={<UsersPage />} />
                     </Route>
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/" element={<AnonRoute />}>
+                      <Route path="/login" element={<LoginPage />} />
+                      <Route path="/register" element={<RegisterPage />} />
+                    </Route>
+
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Suspense>

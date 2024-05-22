@@ -3,7 +3,7 @@ import { RootState } from "../store/store";
 import { Navigate, Outlet } from "react-router-dom";
 import Spinner from "./Spinner";
 
-export default function ProtectedRoute() {
+export default function AnonRoute() {
   const { email, loading } = useSelector((state: RootState) => state.user);
 
   if (loading) {
@@ -11,8 +11,8 @@ export default function ProtectedRoute() {
   }
 
   if (email === "") {
-    return <Navigate to="/login" />;
+    return <Outlet />;
   }
 
-  return <Outlet />;
+  return <Navigate to="/" />;
 }
